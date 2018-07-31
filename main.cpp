@@ -47,8 +47,8 @@ int main(int argc, char* argv[]) {
         printf("%u bytes captured\n", header->caplen);
 
         struct ether_header* eth_header = (ether_header *)packet;
-        printMAC("Ethernet SMAC", eth_header->ether_shost);
-        printMAC("Ethernet DMAC", eth_header->ether_dhost);
+        printMAC("SOURCE MAC", eth_header->ether_shost);
+        printMAC("DESTINATION MAC", eth_header->ether_dhost);
         printf("Ethernet TYPE: %04x\n", ntohs(eth_header->ether_type));
         
         packet += sizeof(struct ether_header);
@@ -69,8 +69,6 @@ int main(int argc, char* argv[]) {
 
                 packet += tcp_header->th_off * 4;
 		          index += tcp_header->th_off * 4;
-
-		
                
 		          int count = 0;
 		          for(int i=index; i < header->caplen; i++) {
